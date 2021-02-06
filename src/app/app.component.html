@@ -1,6 +1,6 @@
 <div id="quiz">
     <ng-container *ngIf="isStartedQuiz">
-        <div class="quiz__configuration" *ngIf="!isConfigurationFinished">
+        <div class="quiz__configuration" *ngIf="!isConfigurationFinished" [@fade]>
             <div class="form-row">
                 <label>Select Category</label>
                 <select class="form-control" [formControl]="category">
@@ -37,7 +37,7 @@
                 <button class="btn" [disabled]="validateButton()" (click)="showRules()">Continue</button>
             </div>
         </div>
-        <div class="start__quiz" *ngIf="isConfigurationFinished">
+        <div class="start__quiz" *ngIf="isConfigurationFinished" [@fade]>
             <div class="start__quiz-header">
                 <h2>Some Rules of this Quiz</h2>
             </div>
@@ -62,11 +62,17 @@
         </div>
     </ng-container>
 
-    <div class="quiz__box" *ngIf="!isStartedQuiz && !showResults">
+    <div class="quiz__box" *ngIf="!isStartedQuiz && !showResults" [@fade]>
         <app-header #header [timer]="time.value" [step]="step" (timeExceed)="getStopTimers()"></app-header>
         <app-body #body [answers]="answers" [activatedStep]="step" (stopTimers)="getStopTimers()"></app-body>
         <app-footer #footer [step]="step" [lengthQuiz]="lengthQuiz" (sendNextQuote)="next($event)" (showResults)="changeResult($event)"></app-footer>
     </div>
 
-    <app-result *ngIf="!isStartedQuiz && showResults" [corrects]="corrects" [length]="lengthQuiz" (restarQuiz)="restarQuiz($event)"></app-result>
+    <app-result
+        [@fade]
+        *ngIf="!isStartedQuiz && showResults"
+        [corrects]="corrects"
+        [length]="lengthQuiz"
+        (restarQuiz)="restarQuiz($event)"
+    ></app-result>
 </div>

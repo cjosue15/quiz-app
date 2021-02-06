@@ -5,11 +5,38 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BodyComponent } from './components/body/body.component';
 import { FormControl, Validators } from '@angular/forms';
+import { style, state, animate, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    // animations: [
+    //     trigger('fadeInOut', [
+    //         transition(':enter', [
+    //             // :enter is alias to 'void => *'
+    //             style({ opacity: 0 }),
+    //             animate(500, style({ opacity: 1 })),
+    //         ]),
+    //         transition(':leave', [
+    //             // :leave is alias to '* => void'
+    //             animate(500, style({ opacity: 0 })),
+    //         ]),
+    //     ]),
+    // ],
+    // animations: [
+    //     trigger('enterAnimation', [
+    //         transition(':enter', [
+    //             style({ transform: 'translateX(100%)', opacity: 0 }),
+    //             animate('500ms', style({ transform: 'translateX(0)', opacity: 1 })),
+    //         ]),
+    //         transition(':leave', [
+    //             style({ transform: 'translateX(0)', opacity: 1 }),
+    //             animate('500ms', style({ transform: 'translateX(100%)', opacity: 0 })),
+    //         ]),
+    //     ]),
+    // ],
+    animations: [trigger('fade', [transition('void => *', [style({ opacity: 0 }), animate(600, style({ opacity: 1 }))])])],
 })
 export class AppComponent implements OnInit {
     answers: Question[];
@@ -99,6 +126,10 @@ export class AppComponent implements OnInit {
         this.isStartedQuiz = true;
         this.showResults = false;
         this.isConfigurationFinished = false;
+        this.answers = [];
+        this.step = 0;
+        this.lengthQuiz = 0;
+        this.corrects = 0;
     }
 
     validateButton(): boolean {

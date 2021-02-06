@@ -1,6 +1,6 @@
 <div class="body">
     <ng-container *ngFor="let answer of answers; let i = index">
-        <ng-container *ngIf="activatedStep === i">
+        <div *ngIf="activatedStep === i" [@fade]>
             <div class="body__title">
                 <h2>{{ i + 1 }}. {{ answer.question }}</h2>
             </div>
@@ -9,6 +9,6 @@
                     <li #el *ngFor="let item of answer.answers" (click)="selectQuestion(item, el, answer, optionsContent)">{{ item.answersText }}</li>
                 </ul>
             </div>
-        </ng-container>
+        </div>
     </ng-container>
 </div>

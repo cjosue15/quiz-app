@@ -1,10 +1,12 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Question, Answer } from '../../models/Question';
+import { style, animate, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'app-body',
     templateUrl: './body.component.html',
     styleUrls: ['./body.component.scss'],
+    animations: [trigger('fade', [transition('void => *', [style({ opacity: 0 }), animate(600, style({ opacity: 1 }))])])],
 })
 export class BodyComponent implements OnInit {
     @Input() answers: Question[];

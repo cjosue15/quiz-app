@@ -19,7 +19,9 @@ export class QuizService {
                         category: question.category,
                         difficulty: question.difficulty,
                         question: question.question,
-                        answers: [...incorrectAnswers, { answersText: question.correct_answer, answersIsCorrect: true }],
+                        answers: [...incorrectAnswers, { answersText: question.correct_answer, answersIsCorrect: true }].sort(
+                            () => 0.5 - Math.random()
+                        ),
                     };
                     return obj;
                 });
