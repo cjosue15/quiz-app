@@ -9,15 +9,19 @@
 .quiz {
     &__box {
         background-color: #fff;
-        width: 600px;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 2em;
         border-radius: 5px;
         overflow: hidden;
     }
 
     &__configuration {
         background-color: #fff;
-        width: 350px;
+        width: 100%;
+        max-width: 350px;
         padding: 1.5em;
+        margin: 0 2em;
         border-radius: 5px;
         .form-row {
             label {
@@ -66,7 +70,9 @@
 
 .start__quiz {
     background-color: #fff;
-    width: 600px;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 2em;
     border-radius: 5px;
 
     &-header {
@@ -106,6 +112,19 @@
 
 .exit-quiz {
     margin-right: 20px;
+}
+
+@media screen and (max-width: 450px) {
+    .btn {
+        margin-right: 0;
+        margin-bottom: 10px;
+        display: block;
+        width: 100%;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
 button:disabled {
