@@ -1,0 +1,6 @@
+<div class="footer">
+    <p class="footer__counter">{{ step + 1 }} of {{ lengthQuiz }} Questions</p>
+    <button *ngIf="buttonVisible" type="button" class="footer__button" (click)="nextQuote()">
+        {{ step + 1 === lengthQuiz ? "See Results" : "Next Quote" }}
+    </button>
+</div>
