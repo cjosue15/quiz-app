@@ -27,6 +27,10 @@ export class BodyComponent implements OnInit {
 
     ngOnInit(): void {}
 
+    get getCorrectAnswers(): number {
+        return this.correctAnswer;
+    }
+
     selectQuestion(item: Answer, el: HTMLLIElement, answer: Question, optionsContent: HTMLUListElement) {
         const index = answer.answers.findIndex((item) => item.answersIsCorrect);
         this.options = optionsContent.children;

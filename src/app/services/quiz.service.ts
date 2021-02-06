@@ -9,8 +9,8 @@ import { Question, Answer } from '../models/Question';
 export class QuizService {
     constructor(private http: HttpClient) {}
 
-    getQuizQuestion() {
-        return this.http.get('https://opentdb.com/api.php?amount=10&category=27&difficulty=easy&type=multiple').pipe(
+    getQuizQuestion({ category, difficulty }: Data) {
+        return this.http.get(`https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&type=multiple`).pipe(
             map((response: any) => {
                 const questions = response.results.map((question: any) => {
                     const incorrectAnswers = question.incorrect_answers.map((item: any): Answer => ({ answersText: item, answersIsCorrect: false }));
@@ -31,4 +31,9 @@ export class QuizService {
     getCategories() {
         return this.http.get('https://opentdb.com/api_category.php');
     }
+}
+
+interface Data {
+    category: string;
+    difficulty: string;
 }

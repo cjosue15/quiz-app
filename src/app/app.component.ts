@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
     difficulty: FormControl;
     time: FormControl;
     categories: { id: number; name: string }[];
+    corrects: number;
     @ViewChild('header', { static: false }) header: HeaderComponent;
     @ViewChild('body', { static: false }) body: BodyComponent;
     @ViewChild('footer', { static: false }) footer: FooterComponent;
@@ -36,19 +37,13 @@ export class AppComponent implements OnInit {
         this.showResults = false;
         this.isConfigurationFinished = false;
         this.categories = [];
+        this.corrects = 0;
         this.category = new FormControl('', Validators.required);
         this.time = new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]);
         this.difficulty = new FormControl('', Validators.required);
     }
 
     ngOnInit(): void {
-        this.quizService.getQuizQuestion().subscribe(
-            (response) => {
-                this.answers = response;
-                this.lengthQuiz = response.length;
-            },
-            (error) => console.log(error)
-        );
         this.quizService.getCategories().subscribe(
             (response: any) => (this.categories = response.trivia_categories),
             (error) => console.log(error)
@@ -58,15 +53,26 @@ export class AppComponent implements OnInit {
     showRules() {
         this.time.setValue(Number(this.time.value));
         this.isConfigurationFinished = true;
+        this.quizService.getQuizQuestion({ category: this.category.value, difficulty: this.difficulty.value }).subscribe(
+            (response) => {
+                this.answers = response;
+                this.lengthQuiz = response.length;
+            },
+            (error) => console.log(error)
+        );
     }
 
     exitQuiz() {
+        this.formReset();
+        this.isConfigurationFinished = false;
+    }
+
+    formReset() {
         this.time.reset();
         this.category.reset();
         this.difficulty.reset();
         this.category.setValue('');
         this.difficulty.setValue('');
-        this.isConfigurationFinished = false;
     }
 
     startQuiz() {
@@ -79,12 +85,20 @@ export class AppComponent implements OnInit {
 
     changeResult(event: boolean) {
         this.showResults = event;
+        this.corrects = this.body.getCorrectAnswers;
     }
 
     getStopTimers() {
         this.header.stopTimers();
         this.body.disabledOptionsAndCheckCorrect();
         this.footer.changeVisibilityButton();
+    }
+
+    restarQuiz(event: boolean) {
+        this.formReset();
+        this.isStartedQuiz = true;
+        this.showResults = false;
+        this.isConfigurationFinished = false;
     }
 
     validateButton(): boolean {

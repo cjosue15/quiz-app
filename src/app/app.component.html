@@ -63,5 +63,5 @@
         <app-footer #footer [step]="step" [lengthQuiz]="lengthQuiz" (sendNextQuote)="next($event)" (showResults)="changeResult($event)"></app-footer>
     </div>
 
-    <div *ngIf="!isStartedQuiz && showResults">results</div>
+    <app-result *ngIf="!isStartedQuiz && showResults" [corrects]="corrects" [length]="lengthQuiz" (restarQuiz)="restarQuiz($event)"></app-result>
 </div>

@@ -1,0 +1,41 @@
+.result__box {
+    background: #fff;
+    padding: 2em;
+    border-radius: 5px;
+    width: 450px;
+    text-align: center;
+    figure {
+        width: 150px;
+        margin: 0 0 25px 0;
+        display: inline-block;
+        img {
+            max-width: 100%;
+        }
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+.content-buttons {
+    margin-top: 20px;
+
+    .btn {
+        background-color: #64ffda;
+        color: #0a192f;
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+}

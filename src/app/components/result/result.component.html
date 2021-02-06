@@ -1,0 +1,8 @@
+<div class="result__box">
+    <figure><img src="assets/images/crown.png" alt="" /></figure>
+    <h2>You've completed the Quiz!</h2>
+    <p>and {{ corrects >= 4 ? "congrats! 🎉" : corrects >= 3 ? "nice 😎" : "you can do better! 🤗" }} . You got {{ corrects }} out of {{ length }}</p>
+    <div class="content-buttons">
+        <button class="btn" (click)="tryAgain()">Try again</button>
+    </div>
+</div>
