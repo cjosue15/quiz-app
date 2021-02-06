@@ -42,17 +42,22 @@
                 <h2>Some Rules of this Quiz</h2>
             </div>
             <div class="start__quiz-body">
-                <p>
-                    1. You will have only <b>{{ time.value }} seconds</b> per each question.
-                </p>
-                <p>2. Once you select your answer, ir can't be undone.</p>
-                <p>3. You can't select any option once time goes off.</p>
-                <p>4. You can't exit from the Quiz while you're playing.</p>
-                <p>4. You'll get points on the basis of your correct answers.</p>
+                <ng-container *ngIf="lengthQuiz > 0">
+                    <p>
+                        1. You will have only <b>{{ time.value }} seconds</b> per each question.
+                    </p>
+                    <p>2. Once you select your answer, ir can't be undone.</p>
+                    <p>3. You can't select any option once time goes off.</p>
+                    <p>4. You can't exit from the Quiz while you're playing.</p>
+                    <p>4. You'll get points on the basis of your correct answers.</p>
+                </ng-container>
+                <ng-container *ngIf="lengthQuiz === 0">
+                    <p>It seems there are no results, try with other category</p>
+                </ng-container>
             </div>
             <div class="start__quiz-footer">
-                <button class="btn exit-quiz" (click)="exitQuiz()">Exit Quiz</button>
-                <button class="btn" (click)="startQuiz()">Start Quiz</button>
+                <button class="btn" (click)="exitQuiz()">Exit Quiz</button>
+                <button *ngIf="lengthQuiz > 0" class="btn start-button" (click)="startQuiz()">Start Quiz</button>
             </div>
         </div>
     </ng-container>

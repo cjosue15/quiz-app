@@ -110,13 +110,13 @@
     cursor: pointer;
 }
 
-.exit-quiz {
-    margin-right: 20px;
+.start-button {
+    margin-left: 20px;
 }
 
 @media screen and (max-width: 450px) {
     .btn {
-        margin-right: 0;
+        margin-left: 0;
         margin-bottom: 10px;
         display: block;
         width: 100%;
